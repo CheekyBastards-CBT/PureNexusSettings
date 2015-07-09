@@ -69,7 +69,7 @@ public class TinkerActivity extends AppCompatActivity {
     public static final String EXTRA_START_FRAGMENT = "com.android.purenexussettings.tinkerings.EXTRA_START_FRAGMENT";
     public static final int REQUEST_CREATE_SHORTCUT = 3;
     // this allows first # entries in stringarray to be skipped from navdrawer/widget
-    public static int FRAG_ARRAY_START = 4;
+    public static int FRAG_ARRAY_START = 5;
 
     public static final String KEY_LOCK_CLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
 
@@ -377,7 +377,7 @@ public class TinkerActivity extends AppCompatActivity {
             }
             fragtrans.add(R.id.frame_container, frags);
             // add fragment name to custom stack for backstack tracking
-            if (!mBackPress && position != 2 && position != 3) { //Avoid adding EditProp or AppPicker fragment to stack
+            if (!mBackPress && position != 2 && position != 3 && position != 4) { //Avoid adding EditProp/AppPicker/QSTile fragment to stack
                 fragmentStack.push(navMenuFrags[position]);
             }
             fragtrans.commit();
@@ -477,6 +477,19 @@ public class TinkerActivity extends AppCompatActivity {
         }, 400);
     }
 
+    public void displayQSTile() {
+        myHandler.removeCallbacksAndMessages(null);
+        mMenu = true;
+        removeCurrent();
+        // below replicates the visual delay seen when launching frags from navdrawer
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                displayView(4);
+            }
+        }, 400);
+    }
+
     public void launchAppOps() {
         Intent link = new Intent();
         ComponentName cn = new ComponentName("com.android.settings", "com.android.settings.SubSettings");
@@ -506,7 +519,7 @@ public class TinkerActivity extends AppCompatActivity {
                 myHandler.removeCallbacksAndMessages(null);
 
                 // removes latest (current) entry in custom stack
-                if (mItemPosition != 2 && mItemPosition != 3) { //but not for editprop or apppicker
+                if (mItemPosition != 2 && mItemPosition != 3 && mItemPosition != 4) { //but not for editprop/apppicker/qstile
                     fragmentStack.pop();
                 }
                 // uses fragment name to find displayview-relevant position

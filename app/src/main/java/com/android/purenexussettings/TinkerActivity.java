@@ -322,7 +322,7 @@ public class TinkerActivity extends AppCompatActivity {
                 mIgnore = true;
             } else {
                 //check for external app launching navdrawer items
-                if ( navMenuTitles[position].equals("App Ops") ) {
+                if ( navMenuTitles[position].equals("App ops") ) {
                     mIgnore = true;
                     launchAppOps();
                 }
@@ -491,11 +491,7 @@ public class TinkerActivity extends AppCompatActivity {
     }
 
     public void launchAppOps() {
-        Intent link = new Intent();
-        ComponentName cn = new ComponentName("com.android.settings", "com.android.settings.SubSettings");
-        link.setComponent(cn);
-        link.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT, "com.android.settings.applications.AppOpsSummary");
-        link.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent link = new Intent("android.settings.APP_OPS_SETTINGS");
         startActivity(link);
     }
 

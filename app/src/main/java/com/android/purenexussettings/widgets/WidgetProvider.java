@@ -39,7 +39,7 @@ public class WidgetProvider extends AppWidgetProvider {
             final Intent fragintent = new Intent(context, TinkerActivity.class);
             int frag = intent.getExtras().getInt(EXTRA_STRING);
             fragintent.putExtra(TinkerActivity.EXTRA_START_FRAGMENT, frag);
-            fragintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            fragintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(fragintent);
         }
         super.onReceive(context, intent);

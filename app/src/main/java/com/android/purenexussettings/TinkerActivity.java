@@ -71,7 +71,7 @@ public class TinkerActivity extends AppCompatActivity {
     public static final String EXTRA_START_FRAGMENT = "com.android.purenexussettings.tinkerings.EXTRA_START_FRAGMENT";
     public static final int REQUEST_CREATE_SHORTCUT = 3;
     // this allows first # entries in stringarray to be skipped from navdrawer/widget
-    public static int FRAG_ARRAY_START = 7;
+    public static int FRAG_ARRAY_START = 8;
 
     public static final String KEY_LOCK_CLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
 
@@ -491,6 +491,19 @@ public class TinkerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 displayView(2);
+            }
+        }, 400);
+    }
+
+    public void displayNavBar() {
+        myHandler.removeCallbacksAndMessages(null);
+        mMenu = true;
+        removeCurrent();
+        // below replicates the visual delay seen when launching frags from navdrawer
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                displayView(6);
             }
         }, 400);
     }

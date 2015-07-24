@@ -25,6 +25,7 @@
         <item>AppPicker</item>
 	<item>Select and order tiles</item>
         <item>Extra info and tools</item>
+        <item>Buttons and layout</item>
         <item>Dimensions</item>
         <item>Navigation bar</item>
         <item>Notification drawer</item>
@@ -58,6 +59,7 @@
         <item>AppPickerFragment</item>
         <item>qs.QSTiles</item>
         <item>DeviceFragment</item>
+        <item>NavBarEdit</item>
         <item>NavBarDimen</item>
         <item>NavigationBarFragment</item>
         <item>NotificationDrawerFragment</item>
@@ -71,6 +73,7 @@
 
     <!-- Nav Drawer List Item Icons -->
     <array name="nav_drawer_icons">
+        <item>null</item>
         <item>null</item>
         <item>null</item>
         <item>null</item>

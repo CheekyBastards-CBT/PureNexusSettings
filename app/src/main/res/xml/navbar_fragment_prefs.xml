@@ -38,6 +38,10 @@
         android:title="@string/navigation_bar_cus" >
 
         <Preference
+            android:key="navigation_bar_edit"
+            android:title="@string/nav_bar_title" />
+
+        <Preference
             android:key="navigation_bar_dimen"
             android:title="@string/navbar_dimen_title" />
 

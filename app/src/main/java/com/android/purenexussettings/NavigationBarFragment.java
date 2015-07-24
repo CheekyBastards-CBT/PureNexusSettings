@@ -29,6 +29,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 public class NavigationBarFragment extends PreferenceFragment implements OnPreferenceChangeListener {
+    private static final String NAVIGATION_BAR = "navigation_bar_edit";
     private static final String NAVIGATION_BAR_DIMEN = "navigation_bar_dimen";
 
     // kill-app long press back
@@ -41,6 +42,7 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
     // kill-app long press back
     private SwitchPreference mKillAppLongPressBack;
 
+    private Preference mNavBar;
     private Preference mNavDimen;
 
     private ContentResolver resolver;
@@ -55,6 +57,7 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
 
         final PreferenceCategory navbarCategory = (PreferenceCategory) prefScreen.findPreference(CATEGORY_NAVBAR);
 
+        mNavBar = prefScreen.findPreference(NAVIGATION_BAR);
         mNavDimen = prefScreen.findPreference(NAVIGATION_BAR_DIMEN);
 
         // kill-app long press back
@@ -92,6 +95,12 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
     }
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, @NonNull Preference pref) {
+        if (pref == mNavBar) {
+            ((TinkerActivity)getActivity()).displayNavBar();
+
+            return true;
+        }
+
         if (pref == mNavDimen) {
             ((TinkerActivity)getActivity()).displayNavDimen();
 

@@ -18,16 +18,59 @@ package com.android.purenexussettings;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.content.ContentResolver;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
+import android.preference.SwitchPreference;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 
+public class NavigationBarFragment extends PreferenceFragment implements OnPreferenceChangeListener {
 
-public class NavigationBarFragment extends PreferenceFragment {
-    public NavigationBarFragment(){}
+    // kill-app long press back
+    private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
 
+    private static final String CATEGORY_NAVBAR = "navigation_bar";
+
+    // kill-app long press back
+    private SwitchPreference mKillAppLongPressBack;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.navbar_fragment_prefs);
 
-        // Load the preferences from an XML resource
-        addPreferencesFromResource(R.xml.dummypref);
+        resolver = getActivity().getContentResolver();
+        final PreferenceScreen prefScreen = getPreferenceScreen();
+
+        final PreferenceCategory navbarCategory = (PreferenceCategory) prefScreen.findPreference(CATEGORY_NAVBAR);
+
+        // kill-app long press back
+        mKillAppLongPressBack = (SwitchPreference) findPreference(KILL_APP_LONGPRESS_BACK);
+        mKillAppLongPressBack.setOnPreferenceChangeListener(this);
+        int killAppLongPressBack = Settings.Secure.getInt(resolver, KILL_APP_LONGPRESS_BACK, 0);
+        mKillAppLongPressBack.setChecked(killAppLongPressBack != 0);
+
+    }
+
+    public NavigationBarFragment() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+
+        // kill-app long press back
+        if (preference == mKillAppLongPressBack) {
+            boolean value = (Boolean) objValue;
+            Settings.Secure.putInt(resolver, KILL_APP_LONGPRESS_BACK, value ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 }

@@ -205,6 +205,10 @@
     <string name="recents_clear_all_dismiss_all_title">Clear all tasks</string>
     <string name="recents_clear_all_dismiss_all_summary">Include foreground task when clearing all</string>
 
+    <!-- Navbar strings -->
+    <string name="navigation_bar_opt">Navbar options</string>
+    <string name="kill_app_longpress_back">Kill app back button</string>
+    <string name="kill_app_longpress_back_summary">Kill the foreground app by long-pressing the back button</string>
     <!-- Power menu strings -->
     <string name="power_menu_reboot_title">Reboot menu</string>
     <string name="power_menu_screenshot_title">Screenshot</string>

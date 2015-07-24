@@ -26,6 +26,7 @@
     <color name="widget_title_text_color">#ffeeeeee</color>
     <color name="widget_divider">#a0000000</color>
     <color name="bg_mat_dark">#ff303030</color>
+    <color name="cardlayout_bg">#ff424242</color>
     <color name="col_accnt">#ff03a9f4</color>
     <color name="statbar">#ff0288d1</color>
     <color name="fab_ripple">#ffb3e5fc</color>
@@ -44,5 +45,5 @@
     <color name="userpanel_default5">#fff4511e</color>
     <color name="userpanel_default6">#ff37474f</color>
 
-    <color name="qs_tile_tint_color">#FF009587</color>
+    <color name="qs_tile_tint_color">#ff009587</color>
 </resources>

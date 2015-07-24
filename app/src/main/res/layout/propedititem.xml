@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             app:cardUseCompatPadding="true"
             app:cardElevation="@dimen/cardview_elevate"
-            app:cardBackgroundColor="@color/bg_mat_dark"
+            app:cardBackgroundColor="@color/cardlayout_bg"
             app:cardCornerRadius="@dimen/cardview_rounding">
 
             <LinearLayout
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             app:cardUseCompatPadding="true"
             app:cardElevation="@dimen/cardview_elevate"
-            app:cardBackgroundColor="@color/bg_mat_dark"
+            app:cardBackgroundColor="@color/cardlayout_bg"
             app:cardCornerRadius="@dimen/cardview_rounding">
 
             <LinearLayout

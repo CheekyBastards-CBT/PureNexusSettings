@@ -13,7 +13,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/apk/res/android">
 <!-- Main Strings for the Base App -->
 
     <!-- App Name -->
@@ -59,32 +59,33 @@
     <string name="picker_summary">Not set</string>
 
     <!-- About strings -->
-    <string name="gplus_data">https://plus.google.com/u/0/+NathanBenis/posts</string>
+    <string name="pushbullet_data">https://www.pushbullet.com/channel?tag=purenexus</string>
+    <string name="gplus_data">https://plus.google.com/communities/103055954354785266764</string>
     <string name="twit_data">https://twitter.com/BeansTown106</string>
     <string name="payp_data">http://forum.xda-developers.com/donatetome.php?u=4395895</string>
     <string name="miscinfo_title">App Info</string>
     <string name="miscinfo_summary">Click here for changelog and app-specific credits</string>
     <string name="nexus_about">PureNexus info</string>
     <string name="nexus_about_summary">Misc info about the rom, developer and contributors</string>
+    <string name="nexus_useful">Useful links</string>
+    <string name="nexus_updates">Pushbullet update notifications</string>
     <string name="lead_dev">Lead Developer</string>
     <string name="beans">BeansTown106</string>
+    <string name="beans_sum">Main PureNexus maintainer</string>
     <string name="beans_twit">BeansTown\'s Twitter</string>
-    <string name="beans_gplus">BeansTown\'s Google+</string>
-    <string name="donate">Donate</string>
-    <string name="donate_sum">Support rom development by donating.</string>
+    <string name="nexus_gplus">PureNexus Google+ community</string>
+    <string name="donate">Donate to support development</string>
     <string name="contribute">Contributors</string>
     <string name="devonte">Dwitherell</string>
     <string name="devonte_sum">Coder/tweaker</string>
     <string name="dhack">Dhacker29</string>
-    <string name="dhack_sum">Gapps Base/kernel</string>
-    <string name="layers">Layers team</string>
-    <string name="layers_sum">Layers app/exposed commits</string>
-    <string name="daveya">DaveyAnnihalation</string>
-    <string name="daveya_sum">Graphics/icons</string>
+    <string name="dhack_sum">Gapps Base</string>
+    <string name="daveya">DaveyAnnihilation</string>
+    <string name="wally">Wally3614</string>
+    <string name="gfx_sum">Graphics/icons</string>
     <string name="surge">Surge1223</string>
-    <string name="surge_sum">Misc Tweaks</string>
-    <string name="bajasur">Bajasur83</string>
-    <string name="bajasur_sum">Misc Tweaks</string>
+    <string name="bajasur">Bajasur</string>
+    <string name="tweak_sum">Misc Tweaks</string>
 
     <!-- BuildProp edit strings -->
     <string name="buildproptitle">Build.prop editor</string>
@@ -104,29 +105,31 @@
     <string name="alertdiagtitle">Changelog</string>
     <string name="setpositive">OK</string>
     <string name="setnegative">Credits</string>
-    <string name="alertthankstitle">Thanks</string>
-    <string name="changelog"><![CDATA[ <font color="ffffff"><center><b><u>=== VERSION 1.0 ===</b></u></center><ul>
-<li>Made a groovy little settings app</li>
-<li>Did stuff so things would work<ul>
-<li>Things here meaning the custom settings works of others</li></ul>
-<li>Did lots of minor UI things involving animated fragment switching, backstack handling, actionbar options when interacting with navdrawer</li>
-<li>Added in widget that replicates sliding navdrawer options</li>
-<li>Modified color picker created by margaritov and edited by those responsible for SlimRom<ul>
-<li>Added back alpha slider text and made it represent current alpha as %</li>
-<li>Fixed minor hex-picking int-to-HSV-to-int issue</li>
-<li>Edited color picker layout to show better in landscape</li>
-<li>Added button to reset preference to default color in color picker</li>
-<li>Made all six preview options able to be set by the enduser via a longpress</li></ul>
-<li>Added ability to hide/show app in app drawer</li>
-<li>Added in custom seekbar preference and some others for checks and switches</li>
-<li>Incorporated libsuperuser to properly handle root-required tasks thanks to Chainfire</li></ul></font>]]></string>
-    <string name="credits"><![CDATA[ <font color="ffffff"><center><b><u>=== MANY THANKS GO TO ===</b></u></center><ul>
-<li>Chainfire for the super easy-to-implement libsuperuser library</li>
-<li>margaritov and those behind slim rom for the great color picker I tinkered with</li>
-<li>Beans for the rom and an excuse to tinker</li>
-<li>Cheekybastards for living up to their namesake</li>
-<li>Gunthermic, for testing and great ideas with the colorpicker!</li>
-<li>All those who have contributed to stackoverflow and various other resources for java/app creation</li></ul></font>]]></string>
+    <string name="changelog"><![CDATA[<br /><big>&#160; &#160; &#160; &#160; <b>=== <u>VERSION 1.0</u> ===</b></big><br /><br />
+&#160; &#8226; Made a groovy little settings app<br />
+&#160; &#8226; Did stuff so things would work<br />
+&#160; &#160; &#160; &#160; &#187; Things here meaning the custom settings works of others<br />
+&#160; &#8226; Did lots of minor UI things<br />
+&#160; &#160; &#160; &#160; &#187; Animated fragment switching and backstack handling<br />
+&#160; &#160; &#160; &#160; &#187; Actionbar options when interacting with navdrawer<br />
+&#160; &#8226; Added in widget that replicates sliding navdrawer options<br />
+&#160; &#8226; Modified margaritov/SlimRom color picker<br />
+&#160; &#160; &#160; &#160; &#187; Added alpha slider text - represents current alpha as percentage<br />
+&#160; &#160; &#160; &#160; &#187; Fixed minor hex-picking int-to-HSV-to-int issue<br />
+&#160; &#160; &#160; &#160; &#187; Edited color picker layout to show better in landscape<br />
+&#160; &#160; &#160; &#160; &#187; Added reset button for default color in color picker<br />
+&#160; &#160; &#160; &#160; &#187; Custom preview options setable via longpress<br />
+&#160; &#8226; Added ability to hide/show app in app drawer<br />
+&#160; &#8226; Incorporated Chainfire\'s libsuperuser to handle root tasks<br />]]></string>
+    <string name="credits"><![CDATA[<br /><big>&#160; &#160; &#160; &#160; <b>=== <u>MANY THANKS GO TO</u> ===</b></big><br /><br />
+&#160; &#8226; Chainfire for the easy-to-implement libsuperuser library<br />
+&#160; &#8226; margaritov/slim rom for the color picker base<br />
+&#160; &#8226; Beans for the rom and an excuse to tinker<br />
+&#160; &#8226; Cheekybastards for living up to their namesake<br />
+&#160; &#8226; Gunthermic, for testing and great ideas with the colorpicker<br />
+&#160; &#8226; DaveyAnnihilation for all the help with setting things up theme-friendly and general aesthetics<br />
+&#160; &#8226; All contributors to stackoverflow or various other java/android app making resources<br />
+&#160; &#8226; Those not mentioned but should have been<br />]]></string>
 
 <!-- Custom setting specific strings -->
     <!-- Notification drawer -->

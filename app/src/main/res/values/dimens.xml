@@ -35,6 +35,7 @@
     <dimen name="cardview_pref_height">90dp</dimen>
     <dimen name="cardview_elevate">5dp</dimen>
     <dimen name="apppicker_cardview_height">50dp</dimen>
+    <dimen name="changelog_txt_size">16sp</dimen>
 
     <!-- QuickSettings tiles -->
     <dimen name="qs_tile_max_size">120dp</dimen>

@@ -21,7 +21,7 @@
     android:layout_height="match_parent"
     card_view:cardUseCompatPadding="true"
     card_view:cardElevation="@dimen/cardview_elevate"
-    card_view:cardBackgroundColor="@color/bg_mat_dark"
+    card_view:cardBackgroundColor="@color/cardlayout_bg"
     card_view:cardCornerRadius="@dimen/cardview_rounding">
 
     <LinearLayout

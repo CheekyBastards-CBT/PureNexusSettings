@@ -17,20 +17,19 @@
 package com.android.purenexussettings;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,54 +40,59 @@ public class AboutFragment extends Fragment {
     private AlertDialog popUpInfo;
     private int clickCount;
 
-    private AlertDialog getDialog(boolean isStart) {
-        // custom title textview
-        TextView alertTitle = new TextView(context);
-        alertTitle.setText(isStart ? getString(R.string.alertdiagtitle) : getString(R.string.alertthankstitle));
-        alertTitle.setBackgroundColor(Color.BLACK);
-        alertTitle.setTextColor(Color.WHITE);
-        alertTitle.setGravity(Gravity.CENTER);
-        alertTitle.setPadding(10, 10, 10, 10);
-        alertTitle.setTextSize(25);
-
-        // custom message webview
-        WebView alertView = new WebView(context);
-        alertView.setBackgroundColor(Color.BLACK);
-        alertView.loadDataWithBaseURL(null, isStart ? getString(R.string.changelog) : getString(R.string.credits), "text/html", "UTF-8", null);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this.getActivity().getWindow().getContext(), android.R.style.Theme_Dialog));
-        builder.setCustomTitle(alertTitle);
-        builder.setView(alertView);
-        builder.setCancelable(false); // This forces button press to clear dialog
-
-        // Ok button
-        builder.setPositiveButton(R.string.setpositive, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
-        // Credits button, but only on initial dialog
-        if (isStart) {
-            builder.setNegativeButton(R.string.setnegative, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    getThanksDialog().show();
-                }
-            });
-        }
-
-        popUpInfo = builder.create();
-
-        return popUpInfo;
+    private void getStartDialog() {
+        MyDialogFragment myDiag = new MyDialogFragment();
+        myDiag.setVals(this, true);
+        myDiag.show(getFragmentManager(), "Diag1");
     }
 
-    private AlertDialog getStartDialog() {
-        return getDialog(true);
-    }
-
-    private AlertDialog getThanksDialog() {
-        return getDialog(false);
+    public void getThanksDialog() {
+        MyDialogFragment myDiag = new MyDialogFragment();
+        myDiag.setVals(this, false);
+        myDiag.show(getFragmentManager(), "Diag2");
     }
 
     public AboutFragment() {
+    }
+
+    public static class MyDialogFragment extends DialogFragment
+    {
+        private boolean showStart;
+        private Fragment fragBase;
+
+        public MyDialogFragment() {}
+
+        public void setVals(Fragment orig, boolean isStart) {
+            showStart = isStart;
+            fragBase = orig;
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+            View view = getActivity().getLayoutInflater().inflate(R.layout.changelog, null);
+            TextView mChangeText = (TextView)view.findViewById(R.id.changetext);
+
+            mChangeText.setText(showStart ? Html.fromHtml(getString(R.string.changelog)) : Html.fromHtml(getString(R.string.credits)));
+
+            builder.setView(view);
+
+            builder.setTitle(showStart ? getString(R.string.alertdiagtitle) : getString(R.string.setnegative));
+
+            builder.setPositiveButton(getString(R.string.setpositive), null);
+
+            if (showStart) {
+                builder.setNegativeButton(getString(R.string.setnegative), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        ((AboutFragment)fragBase).getThanksDialog();
+                    }
+                });
+            }
+
+            return  builder.create();
+        }
     }
 
     @Override
@@ -109,16 +113,18 @@ public class AboutFragment extends Fragment {
 
         //gplus
         LinearLayout link1 = (LinearLayout)v.findViewById(R.id.link1_card);
-        //twitter
+        //gplus
         LinearLayout link2 = (LinearLayout)v.findViewById(R.id.link2_card);
-        //donate
+        //twitter
         LinearLayout link3 = (LinearLayout)v.findViewById(R.id.link3_card);
+        //donate
+        LinearLayout link4 = (LinearLayout)v.findViewById(R.id.link4_card);
 
         thanks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (popUpInfo == null || !popUpInfo.isShowing()) {
-                    getStartDialog().show();
+                    getStartDialog();
                     logo.setClickable(true);
                 }
             }
@@ -128,7 +134,7 @@ public class AboutFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent link = new Intent(Intent.ACTION_VIEW);
-                Uri url = Uri.parse(getString(R.string.gplus_data));
+                Uri url = Uri.parse(getString(R.string.pushbullet_data));
                 link.setData(url);
                 startActivity(link);
             }
@@ -138,13 +144,23 @@ public class AboutFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent link = new Intent(Intent.ACTION_VIEW);
-                Uri url = Uri.parse(getString(R.string.twit_data));
+                Uri url = Uri.parse(getString(R.string.gplus_data));
                 link.setData(url);
                 startActivity(link);
             }
         });
 
         link3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent link = new Intent(Intent.ACTION_VIEW);
+                Uri url = Uri.parse(getString(R.string.twit_data));
+                link.setData(url);
+                startActivity(link);
+            }
+        });
+
+        link4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent link = new Intent(Intent.ACTION_VIEW);

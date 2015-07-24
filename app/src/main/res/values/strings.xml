@@ -212,6 +212,8 @@
     <string name="kill_app_longpress_back_summary">Kill the foreground app by long-pressing the back button</string>
     <string name="navigation_bar_left_title">Left-handed mode</string>
     <string name="navigation_bar_left_summary">Place the navigation bar on the left side of the screen in landscape mode</string>
+    <string name="ime_switcher_notify">IME selector icon</string>
+    <string name="ime_switcher_notify_summary">Display input method selector icon</string>
     <string name="nav_bar_title">Buttons and layout</string>
     <string name="navigation_bar_help_text">To get started tap the edit icon to unlock the navigation bar for editing.\n\nYou can tap an icon to change its shortcut, or long press an icon to re-arrange the layout.\n\nTap \'Save\' to commit your changes, or \'Restore defaults\' to reset the layout to default settings.</string>
     <string name="navigation_restore_button_text">Restore\ndefaults</string>

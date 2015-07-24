@@ -32,6 +32,12 @@
             android:summary="@string/navigation_bar_arrow_keys_summary"
             android:defaultValue="false" />
 
+        <com.android.purenexussettings.preferences.SystemSettingSwitchPreference
+            android:key="status_bar_ime_switcher"
+            android:title="@string/ime_switcher_notify"
+            android:summary="@string/ime_switcher_notify_summary"
+            android:defaultValue="true" />
+
         <SwitchPreference
             android:key="kill_app_longpress_back"
             android:summary="@string/kill_app_longpress_back_summary"

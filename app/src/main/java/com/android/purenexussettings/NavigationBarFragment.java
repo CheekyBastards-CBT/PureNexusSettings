@@ -66,6 +66,15 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
         int killAppLongPressBack = Settings.Secure.getInt(resolver, KILL_APP_LONGPRESS_BACK, 0);
         mKillAppLongPressBack.setChecked(killAppLongPressBack != 0);
 
+        // Enable or disable NavbarImeSwitcher based on boolean: config_show_cmIMESwitcher
+        //boolean showCmImeSwitcher = getResources().getBoolean(com.android.internal.R.bool.config_show_cmIMESwitcher);
+        boolean showCmImeSwitcher = true;
+        if (!showCmImeSwitcher) {
+            Preference pref = findPreference(STATUS_BAR_IME_SWITCHER);
+            if (pref != null) {
+                navbarCategory.removePreference(pref);
+            }
+        }
 
         // remove if tablet
         if ((getActivity().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE) {

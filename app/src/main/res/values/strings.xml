@@ -174,6 +174,8 @@
 
     <!-- RecentApps strings -->
     <string name="recent_app_title">Recent apps</string>
+    <string name="recents_longpress_title">Recents longpress</string>
+    <string name="recents_longpress_summary">Enable recents longpress to go to last open app</string>
     <string name="show_clear_all_recents_button_title">Clear all button</string>
     <string name="show_clear_all_recents_button_summary">Show clear all button</string>
     <string name="recents_clear_all_location_title">Clear all location</string>

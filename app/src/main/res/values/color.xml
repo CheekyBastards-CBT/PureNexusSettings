@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2015 The Pure Nexus Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <color name="list_item_title">#ffeeeeee</color>
+    <color name="list_background">@color/material_blue_grey_950</color>
+    <color name="list_background_pressed">#ff555555</color>
+    <color name="list_background_activated">#ff777777</color>
+    <color name="list_divider">@color/list_background</color>
+    <color name="widget_background">#80000000</color>
+    <color name="widget_title_background">#90000000</color>
+    <color name="widget_item_background">#80000000</color>
+    <color name="widget_title_text_color">#ffeeeeee</color>
+    <color name="widget_divider">#a0000000</color>
+    <color name="bg_mat_dark">#ff303030</color>
+    <color name="col_accnt">#ff03a9f4</color>
+    <color name="statbar">#ff0288d1</color>
+    <color name="fab_ripple">#ffb3e5fc</color>
+    <color name="transcol">#00000000</color>
+    <color name="cardview_pref_title">#ffffffff</color>
+    <!-- If one wanted... they could alter the checkered alpha colors with the below -->
+    <color name="alphawhite">#ffffffff</color>
+    <color name="alphagray">#ffcbcbcb</color>
+    <!-- Set the border color of longpress capable panels -->
+    <color name="userpanel_border">#ff888888</color>
+    <!-- Set the border color to identify panels that can be user set via longpess -->
+    <color name="userpanel_default1">#ff80cbc4</color>
+    <color name="userpanel_default2">#ff2196f3</color>
+    <color name="userpanel_default3">#ff9ccc65</color>
+    <color name="userpanel_default4">#ff2e7d32</color>
+    <color name="userpanel_default5">#fff4511e</color>
+    <color name="userpanel_default6">#ff37474f</color>
+
+    <color name="qs_tile_tint_color">#FF009587</color>
+</resources>

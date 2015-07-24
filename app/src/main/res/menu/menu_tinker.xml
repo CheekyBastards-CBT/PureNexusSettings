@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".TinkerActivity">
+    <group android:id="@+id/action_items">
+        <item android:id="@+id/action_about" android:title="@string/action_about"
+            android:orderInCategory="5" custom:showAsAction="ifRoom" />
+        <item android:id="@+id/action_discard" android:title="@string/cancelprop"
+            android:orderInCategory="10" custom:showAsAction="ifRoom" />
+        <item android:id="@+id/action_delete" android:title="@string/deleteprop"
+            android:orderInCategory="15" custom:showAsAction="never" />
+        <item android:id="@+id/action_backup" android:title="@string/editprop_backup"
+            android:orderInCategory="20" custom:showAsAction="never" />
+        <item android:id="@+id/action_restore" android:title="@string/editprop_restore"
+            android:orderInCategory="25" custom:showAsAction="never" />
+        <item android:id="@+id/action_launchhide" android:title="@string/action_launchhide"
+            android:orderInCategory="30" android:checkable="true" custom:showAsAction="never" />
+    </group>
+</menu>
+

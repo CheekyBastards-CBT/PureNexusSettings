@@ -16,6 +16,7 @@
 
 package com.android.purenexussettings;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -42,6 +43,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -133,11 +135,7 @@ public class TinkerActivity extends AppCompatActivity {
             dialog.setCancelable(false);
 
             // A semi-hack way to prevent FCs when orientation changes during progress dialog showing
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                ((TinkerActivity) context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                ((TinkerActivity) context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
+            TinkerActivity.lockCurrentOrientation((TinkerActivity) context);
 
             dialog.show();
         }
@@ -291,11 +289,13 @@ public class TinkerActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             // on first time display view for first nav item
             displayView(mItemPosition = getIntent().getIntExtra(EXTRA_START_FRAGMENT, 0));
-        } else if (savedInstanceState.getSerializable("fragstack") != null) {
+        } else if (savedInstanceState.getStringArrayList("fragstack") != null) {
             try {
-                // brings in the pre-orientation change stack list
-                fragmentStack = (Stack<String>) savedInstanceState.getSerializable("fragstack");
-                mItemPosition = (int) savedInstanceState.getSerializable("currpos");
+                // recreates the pre-orientation change stack list
+                fragmentStack = new Stack<String>();
+                fragmentStack.addAll(savedInstanceState.getStringArrayList("fragstack"));
+                // pulls in the pre-orientation position and sets actionbar title
+                mItemPosition = savedInstanceState.getInt("currpos");
                 setTitle(navMenuTitles[mItemPosition]);
             } catch (Exception e) {}
         }
@@ -304,11 +304,11 @@ public class TinkerActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        // not sure serializable is the way to go... but it works for now
-        // lets the stack list stick around after orientation change
-        outState.putSerializable("fragstack", fragmentStack);
-        // toss in position number for title update
-        outState.putSerializable("currpos", mItemPosition);
+        // converts stack to arraylist to make for easier passing through bundle
+        ArrayList<String> frags = new ArrayList<String>(fragmentStack);
+        outState.putStringArrayList("fragstack", frags);
+        // toss in position number for title update as well
+        outState.putInt("currpos", mItemPosition);
     }
 
     /* Slide menu item click listener */
@@ -678,4 +678,34 @@ public class TinkerActivity extends AppCompatActivity {
             default:
         }
     }
+
+    public static void lockCurrentOrientation(Activity activity) {
+        int currentRotation = activity.getWindowManager().getDefaultDisplay().getRotation();
+        int orientation = activity.getResources().getConfiguration().orientation;
+        int frozenRotation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
+        switch (currentRotation) {
+            case Surface.ROTATION_0:
+                frozenRotation = orientation == Configuration.ORIENTATION_LANDSCAPE
+                        ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                        : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+                break;
+            case Surface.ROTATION_90:
+                frozenRotation = orientation == Configuration.ORIENTATION_PORTRAIT
+                        ? ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT
+                        : ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+                break;
+            case Surface.ROTATION_180:
+                frozenRotation = orientation == Configuration.ORIENTATION_LANDSCAPE
+                        ? ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE
+                        : ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT;
+                break;
+            case Surface.ROTATION_270:
+                frozenRotation = orientation == Configuration.ORIENTATION_PORTRAIT
+                        ? ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                        : ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE;
+                break;
+        }
+        activity.setRequestedOrientation(frozenRotation);
+    }
+
 }

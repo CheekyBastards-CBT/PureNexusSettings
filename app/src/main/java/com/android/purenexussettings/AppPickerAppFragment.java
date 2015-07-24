@@ -65,11 +65,7 @@ public class AppPickerAppFragment extends Fragment {
             dialog.setCancelable(false);
 
             // A semi-hack way to prevent FCs when orientation changes during progress dialog showing
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                ((TinkerActivity) context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            } else {
-                ((TinkerActivity) context).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
+            TinkerActivity.lockCurrentOrientation((TinkerActivity) context);
 
             dialog.show();
         }

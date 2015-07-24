@@ -16,6 +16,7 @@
 
 package com.android.purenexussettings;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.content.ContentResolver;
@@ -31,11 +32,16 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
 
     // kill-app long press back
     private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+    // Navigation bar left
+    private static final String KEY_NAVIGATION_BAR_LEFT = "navigation_bar_left";
 
     private static final String CATEGORY_NAVBAR = "navigation_bar";
 
     // kill-app long press back
     private SwitchPreference mKillAppLongPressBack;
+
+    private ContentResolver resolver;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +57,12 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
         mKillAppLongPressBack.setOnPreferenceChangeListener(this);
         int killAppLongPressBack = Settings.Secure.getInt(resolver, KILL_APP_LONGPRESS_BACK, 0);
         mKillAppLongPressBack.setChecked(killAppLongPressBack != 0);
+
+
+        // remove if tablet
+        if ((getActivity().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            navbarCategory.removePreference(findPreference(KEY_NAVIGATION_BAR_LEFT));
+        }
 
     }
 

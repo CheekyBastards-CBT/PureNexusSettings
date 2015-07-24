@@ -428,19 +428,6 @@ public class TinkerActivity extends AppCompatActivity {
         }
     }
 
-    public void displayBuildPropEditor() {
-        myHandler.removeCallbacksAndMessages(null);
-        mMenu = true;
-        removeCurrent();
-        // below replicates the visual delay seen when launching frags from navdrawer
-        myHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                displayView(1);
-            }
-        }, 400);
-    }
-
     public void displayAppPicker(Preference object, int titles, int icons, int keys) {
         // stuff for apppicker fragment
         mPrefKey = object.getKey();
@@ -456,6 +443,32 @@ public class TinkerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 displayView(3);
+            }
+        }, 400);
+    }
+
+    public void displayBuildPropEditor() {
+        myHandler.removeCallbacksAndMessages(null);
+        mMenu = true;
+        removeCurrent();
+        // below replicates the visual delay seen when launching frags from navdrawer
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                displayView(1);
+            }
+        }, 400);
+    }
+
+    public void displayDeviceInfo() {
+        myHandler.removeCallbacksAndMessages(null);
+        mMenu = true;
+        removeCurrent();
+        // below replicates the visual delay seen when launching frags from navdrawer
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                displayView(5);
             }
         }, 400);
     }

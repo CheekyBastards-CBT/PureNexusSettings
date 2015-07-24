@@ -176,7 +176,7 @@ public class AboutFragment extends Fragment {
                 clickCount++;
                 if (clickCount >= 5) {
                     clickCount = 0;
-                    ((TinkerActivity) getActivity()).displayBuildPropEditor();
+                    ((TinkerActivity) getActivity()).displayDeviceInfo();
                 }
             }
         });

@@ -24,6 +24,7 @@
         <item>EditProp</item>
         <item>AppPicker</item>
 	<item>Select and order tiles</item>
+        <item>Extra info and tools</item>
         <item>Navigation bar</item>
         <item>Notification drawer</item>
         <item>Power Menu</item>
@@ -55,6 +56,7 @@
         <item>EditPropFragment</item>
         <item>AppPickerFragment</item>
         <item>qs.QSTiles</item>
+        <item>DeviceFragment</item>
         <item>NavigationBarFragment</item>
         <item>NotificationDrawerFragment</item>
         <item>PowerMenuFragment</item>
@@ -67,6 +69,7 @@
 
     <!-- Nav Drawer List Item Icons -->
     <array name="nav_drawer_icons">
+        <item>null</item>
         <item>null</item>
         <item>null</item>
         <item>null</item>

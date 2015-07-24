@@ -29,6 +29,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 public class NavigationBarFragment extends PreferenceFragment implements OnPreferenceChangeListener {
+    private static final String NAVIGATION_BAR_DIMEN = "navigation_bar_dimen";
 
     // kill-app long press back
     private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
@@ -39,6 +40,8 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
 
     // kill-app long press back
     private SwitchPreference mKillAppLongPressBack;
+
+    private Preference mNavDimen;
 
     private ContentResolver resolver;
 
@@ -51,6 +54,8 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
         final PreferenceScreen prefScreen = getPreferenceScreen();
 
         final PreferenceCategory navbarCategory = (PreferenceCategory) prefScreen.findPreference(CATEGORY_NAVBAR);
+
+        mNavDimen = prefScreen.findPreference(NAVIGATION_BAR_DIMEN);
 
         // kill-app long press back
         mKillAppLongPressBack = (SwitchPreference) findPreference(KILL_APP_LONGPRESS_BACK);
@@ -83,6 +88,16 @@ public class NavigationBarFragment extends PreferenceFragment implements OnPrefe
             Settings.Secure.putInt(resolver, KILL_APP_LONGPRESS_BACK, value ? 1 : 0);
             return true;
         }
+        return false;
+    }
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen prefScreen, @NonNull Preference pref) {
+        if (pref == mNavDimen) {
+            ((TinkerActivity)getActivity()).displayNavDimen();
+
+            return true;
+        }
+
         return false;
     }
 }

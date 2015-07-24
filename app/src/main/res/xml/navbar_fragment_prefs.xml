@@ -32,4 +32,14 @@
             android:title="@string/kill_app_longpress_back" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="navigation_barc"
+        android:title="@string/navigation_bar_cus" >
+
+        <Preference
+            android:key="navigation_bar_dimen"
+            android:title="@string/navbar_dimen_title" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

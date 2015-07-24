@@ -71,7 +71,7 @@ public class TinkerActivity extends AppCompatActivity {
     public static final String EXTRA_START_FRAGMENT = "com.android.purenexussettings.tinkerings.EXTRA_START_FRAGMENT";
     public static final int REQUEST_CREATE_SHORTCUT = 3;
     // this allows first # entries in stringarray to be skipped from navdrawer/widget
-    public static int FRAG_ARRAY_START = 5;
+    public static int FRAG_ARRAY_START = 7;
 
     public static final String KEY_LOCK_CLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
 
@@ -358,6 +358,10 @@ public class TinkerActivity extends AppCompatActivity {
             launchcLock();
         }
 
+        // list out positions that should not be included in backstack
+        // editprop apppicker qstile navbar navbardimen
+        boolean mIgnoreStack = position == 2 || position == 3 || position == 4 || position == 6 || position == 7;
+
         // update the main content by replacing fragments
         Fragment frags = null;
         String fragname = navMenuFrags[position];
@@ -377,7 +381,8 @@ public class TinkerActivity extends AppCompatActivity {
             }
             fragtrans.add(R.id.frame_container, frags);
             // add fragment name to custom stack for backstack tracking
-            if (!mBackPress && position != 2 && position != 3 && position != 4) { //Avoid adding EditProp/AppPicker/QSTile fragment to stack
+            // only do it if not a backpress, flagged to ignore, or dup of last entry
+            if (!mBackPress && !mIgnoreStack && !(fragmentStack.size() >= 1 && fragmentStack.peek().equals(navMenuFrags[position]))) {
                 fragmentStack.push(navMenuFrags[position]);
             }
             fragtrans.commit();
@@ -490,6 +495,19 @@ public class TinkerActivity extends AppCompatActivity {
         }, 400);
     }
 
+    public void displayNavDimen() {
+        myHandler.removeCallbacksAndMessages(null);
+        mMenu = true;
+        removeCurrent();
+        // below replicates the visual delay seen when launching frags from navdrawer
+        myHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                displayView(7);
+            }
+        }, 400);
+    }
+
     public void displayQSTile() {
         myHandler.removeCallbacksAndMessages(null);
         mMenu = true;
@@ -517,10 +535,14 @@ public class TinkerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        // list out positions that were not included in backstack
+        // editprop apppicker qstile navbar navbardimen
+        boolean mIgnoreStack = mItemPosition == 2 || mItemPosition == 3 || mItemPosition == 4 || mItemPosition == 6 || mItemPosition == 7;
+
         if (!fullyClosed) {
             // backpress closes drawer if open
             mDrawerLayout.closeDrawer(mDrawerList);
-        } else if (fragmentStack.size() > 1) {
+        } else if (fragmentStack.size() > 1 || mIgnoreStack) {
             if (!mIgnoreBack) {
                 mIgnoreBack = true;
 
@@ -528,7 +550,7 @@ public class TinkerActivity extends AppCompatActivity {
                 myHandler.removeCallbacksAndMessages(null);
 
                 // removes latest (current) entry in custom stack
-                if (mItemPosition != 2 && mItemPosition != 3 && mItemPosition != 4) { //but not for editprop/apppicker/qstile
+                if (!mIgnoreStack) {
                     fragmentStack.pop();
                 }
                 // uses fragment name to find displayview-relevant position
